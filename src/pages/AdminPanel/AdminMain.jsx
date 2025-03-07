@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import InstitutionalCategory from './InstitutionalCategory';
 import OfficeCategory from './OfficeCategory';
-import { BiLoader } from 'react-icons/bi';
 import { Link } from "react-router-dom";
 
 const AdminMain = () => {
@@ -38,24 +37,14 @@ const AdminMain = () => {
       </select>
 
       {/* Loading message */}
-      {loading && (
-      <div className="fixed top-0 left-0 w-full h-full z-50 navigation-bar bg-black opacity-80 flex items-center justify-center">
-        <nav className="flex items-center justify-between flex-wrap">
-          <div className="w-full text-center">
-            <p className="text-gray-600 font-bold text-lg flex justify-center">
-              <BiLoader className="animate-spin text-green-400 w-10 h-auto" />
-            </p>
-          </div>
-        </nav>
-      </div>
-      )}
+   
 
       {/* Display InstitutionalCategory by default or if selected */}
       {selectedCategory === 'institutional' && !loading && (
         <div className="container max-w-4xl bg-white p-8 rounded-lg shadow-lg mt-10">
           <InstitutionalCategory />
           <div className="mt-10">
-            <Link to={"/institutional-product"}>
+            <Link to={"/products"}>
               <button className="px-5 py-1 border rounded-lg bg-green-600 hover:bg-green-700 text-white">Next</button>
             </Link>
           </div>

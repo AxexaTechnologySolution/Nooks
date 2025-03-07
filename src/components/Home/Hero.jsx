@@ -41,7 +41,7 @@ const Hero = () => {
         <h2 className="mt-4 text-sm sm:text-lg md:text-xl lg:text-2xl text-black">
           Transform your space with our wide range of furniture solutions.
         </h2>
-        <Link to={"/institutional-products/aUEqZwVPPzkOBhQwVt6X"} className="inline-block mt-8">
+        <Link to={"/products"} className="inline-block mt-8">
           <div className="flex items-center w-fit space-x-2 px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-gray-500 hover:bg-gray-800 text-white font-semibold rounded-xl">
             <span>Products</span>
             <FaArrowRight />

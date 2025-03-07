@@ -1,20 +1,8 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase"; // Ensure 'db' is correctly imported
-import { BiLoader } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-const Spinner = () => (
-  <div className="fixed top-0 left-0 w-full h-full z-50 navigation-bar bg-black opacity-80 flex items-center justify-center">
-  <nav className="flex items-center justify-between flex-wrap">
-    <div className="w-full text-center">
-      <p className="text-gray-600 font-bold text-lg flex justify-center">
-        <BiLoader className="animate-spin text-green-400 w-10 h-auto" />
-      </p>
-    </div>
-  </nav>
-</div>
-);
 
 function OfficeProducts() {
   const [products, setProducts] = useState([]);
@@ -63,19 +51,7 @@ function OfficeProducts() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="fixed top-0 left-0 w-full h-full z-50 navigation-bar bg-black opacity-80 flex items-center justify-center">
-        <nav className="flex items-center justify-between flex-wrap">
-          <div className="w-full text-center">
-            <p className="text-gray-600 font-bold text-lg flex justify-center">
-              <BiLoader className="animate-spin text-green-400 w-10 h-auto" />
-            </p>
-          </div>
-        </nav>
-      </div>
-    );
-  }
+
   if (error)
     return (
       <div className="flex h-[80vh] justify-center items-center ">

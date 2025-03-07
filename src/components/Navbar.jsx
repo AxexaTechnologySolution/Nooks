@@ -3,7 +3,6 @@ import { MdMenu, MdClose } from "react-icons/md";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { MdKeyboardArrowRight, MdKeyboardArrowDown } from "react-icons/md";
-import { BiLoader } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
@@ -16,7 +15,49 @@ const NavBar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [currentPage, setCurrentPage] = useState(window.location.pathname);
   const dropdownRef = useRef(null);
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {  
+    const fetchProducts = async () => {  
+      try {  
+        // Fetch Institutional Products  
+        const institutionalSnapshot = await getDocs(  
+          collection(db, "institutionalProducts")  
+        );  
+        const institutionalProducts = institutionalSnapshot.docs.map((doc) => ({  
+          id: doc.id,  
+          type: "Institutional",  
+          ...doc.data(),  
+        }));  
+
+        // Fetch Office Products  
+        const officeSnapshot = await getDocs(collection(db, "officeProducts"));  
+        const officeProducts = officeSnapshot.docs.map((doc) => ({  
+          id: doc.id,  
+          type: "Office",  
+          ...doc.data(),  
+        }));  
+
+        // Merge both collections  
+        const allProducts = [...institutionalProducts, ...officeProducts];  
+        setProducts(allProducts);  
+
+        // Log the type of each product (example)  
+        allProducts.forEach(product => {  
+          console.log(product.name, product.type);  
+        });  
+
+
+      } catch (err) {  
+        console.error("Error fetching products:", err);  
+      } finally {  
+      }  
+    };  
+
+    fetchProducts();  
+  }, []);  
+  console.log(products.type);
+  
   // Toggle the dropdown visibility
   const toggleDropdown = (productId) => {
     setOpenDropdown(openDropdown === productId ? null : productId);
@@ -38,26 +79,33 @@ const NavBar = () => {
     try {
       // Define the desired category order
       const categoryOrder = ["Single Bed", "Bunk Bed"]; // Add more categories as needed
-  
+
       // Fetch institutional products
-      const institutional_snapshot = await getDocs(collection(db, "institutionalProducts"));
+      const institutional_snapshot = await getDocs(
+        collection(db, "institutionalProducts")
+      );
       const institutional_data = await Promise.all(
         institutional_snapshot.docs.map(async (doc) => {
           const product_data = { id: doc.id, ...doc.data() };
-          const categories_snapshot = await getDocs(collection(db, `institutionalProducts/${doc.id}/images`));
-  
+          const categories_snapshot = await getDocs(
+            collection(db, `institutionalProducts/${doc.id}/images`)
+          );
+
           // Sort categories based on predefined order
           product_data.categories = categories_snapshot.docs
             .map((cat_doc) => ({ id: cat_doc.id, ...cat_doc.data() }))
             .sort((a, b) => {
-              return categoryOrder.indexOf(a.categoryName) - categoryOrder.indexOf(b.categoryName);
+              return (
+                categoryOrder.indexOf(a.categoryName) -
+                categoryOrder.indexOf(b.categoryName)
+              );
             });
-  
+
           return product_data;
         })
       );
       set_institutional_products(institutional_data);
-  
+
       // Fetch office products
       const office_snapshot = await getDocs(collection(db, "officeProducts"));
       const office_data = await Promise.all(
@@ -66,14 +114,17 @@ const NavBar = () => {
           const categories_snapshot = await getDocs(
             collection(db, `officeProducts/${doc.id}/images`)
           );
-            
+
           // Sort categories based on predefined order
           product_data.categories = categories_snapshot.docs
             .map((cat_doc) => ({ id: cat_doc.id, ...cat_doc.data() }))
             .sort((a, b) => {
-              return categoryOrder.indexOf(a.categoryName) - categoryOrder.indexOf(b.categoryName);
+              return (
+                categoryOrder.indexOf(a.categoryName) -
+                categoryOrder.indexOf(b.categoryName)
+              );
             });
-  
+
           return product_data;
         })
       );
@@ -85,8 +136,6 @@ const NavBar = () => {
       set_loading(false);
     }
   };
-  
-  
 
   useEffect(() => {
     fetch_products();
@@ -125,22 +174,8 @@ const NavBar = () => {
     "Double seater desk",
     "Three seater desk",
     "Writing pad chair",
-    "Teacher's table and chair"
+    "Teacher's table and chair",
   ];
-  if (loading) {
-    return (
-      <div className="fixed top-0 left-0 w-full h-full z-50 navigation-bar bg-black opacity-80 flex items-center justify-center">
-        <nav className="flex items-center justify-between flex-wrap">
-          <div className="w-full text-center">
-            <p className="text-gray-600 font-bold text-lg flex justify-center">
-              <BiLoader className="animate-spin text-[#3eae94] w-10 h-auto" />
-            </p>
-          </div>
-        </nav>
-      </div>
-    );
-  }
-
 
   if (error) {
     return (
@@ -173,7 +208,9 @@ const NavBar = () => {
           </button>
         </div>
         <div
-         className={`w-full ${is_menu_open ? "block" : "hidden"} lg:flex lg:items-center lg:w-auto menu-links`}
+          className={`w-full ${
+            is_menu_open ? "block" : "hidden"
+          } lg:flex lg:items-center lg:w-auto menu-links`}
         >
           <div className="lg:border-none rounded-md lg:mx-0 mx-5">
             <div className="text-sm nav-links lg:flex-grow lg:flex-none lg:flex-row flex flex-col lg:gap-3 items-center lg:items-start">
@@ -188,7 +225,10 @@ const NavBar = () => {
               </div>
 
               {/* Products Dropdown */}
-              <div className="relative inline-block text-left" ref={dropdownRef}>
+              <div
+                className="relative inline-block text-left"
+                ref={dropdownRef}
+              >
                 <div className="flex items-center justify-center">
                   <div
                     onClick={toggle_products}
@@ -205,113 +245,58 @@ const NavBar = () => {
                   </div>
                 </div>
                 {is_products_open && (
-  <div className="absolute -right-60 sm:-right-96 lg:-right-20  md:-right-60 mt-10 bg-white text-black shadow-lg z-20 text-xs sm:text-sm md:text-lg w-screen md:w-[70vw] p-8">
-    <div className="grid grid-cols-1 gap-4">
-
-      {/* Institutional Products */}
-      <div className="product-section">
-        {institutional_products.length > 0 ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3">
-            {institutional_products.map((product) => (
-              <div key={product.id} className="mb-4">
-
-                {/* Dropdown for small screens */}
-                <div className="block md:hidden">
-                  <button
-                    onClick={() => toggleDropdown(product.id)}
-                    className="font-bold text-left w-full"
-                  >
-                    <Link to={`/institutional-products/${product.id}`}>
-                      <span className="font-bold text-sm">
-                        {product.name}
-                      </span>
-                    </Link>
-                    <span className="ml-2">
-                      {openDropdown === product.id ? "▲" : "▼"}
-                    </span>
-                  </button>
-
-                  {openDropdown === product.id && product.categories.length > 0 && (
-                    <ul className="list-disc space-y-1 text-xs text-gray-500">
-                      {product.categories
-                        .sort((a, b) => {
-                          const indexA = categoryOrder.indexOf(a.categoryName);
-                          const indexB = categoryOrder.indexOf(b.categoryName);
-                          return (indexA !== -1 ? indexA : categoryOrder.length) -
-                                 (indexB !== -1 ? indexB : categoryOrder.length);
-                        })
-                        .map((category) => (
-                          <div key={category.id}>
-                            <Link
-                              to={`/category-images/${product.id}/${category.id}`}
-                              onClick={() => handleNavigation(`/category-images/${product.id}/${category.id}`)}
-                            >
-                              {category.categoryName}
-                            </Link>
-                          </div>
-                        ))}
-                    </ul>
-                  )}
+            
+                <div className="absolute -right-30 lg:-right-20 md:-right-60 mt-10 bg-white text-black shadow-lg z-20 text-xs sm:text-sm md:text-lg w-[60vw] md:w-[70vw] p-8">
+                 <div className="ml-0 md:ml-10">
+                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 ">
+                    {[...institutional_products, ...office_products].map((product) => {
+                      const isOfficeProduct = office_products.some((p) => p.id === product.id);
+                      return (
+                        <div key={product.id} className="mb-4">
+                          <Link
+                            to={isOfficeProduct ? `/office-products/${product.id}` : `/products/${product.id}`}
+                            className="text-black font-bold hover:text-green-700"
+                            onClick={() =>
+                              handleNavigation(isOfficeProduct ? "/office-products" : "/products")
+                            }
+                          >
+                            {product.name}
+                          </Link>
+                          {/* Show categories only for institutional products */}
+                          {!isOfficeProduct && product.categories?.length > 0 && (
+                            <ul className=" text-sm text-gray-500 mt-2">
+                              {product.categories
+                                .sort((a, b) => {
+                                  const indexA = categoryOrder.indexOf(a.categoryName);
+                                  const indexB = categoryOrder.indexOf(b.categoryName);
+                                  return (
+                                    (indexA !== -1 ? indexA : categoryOrder.length) -
+                                    (indexB !== -1 ? indexB : categoryOrder.length)
+                                  );
+                                })
+                                .map((category) => (
+                                  <li key={category.id}>
+                                    <Link
+                                      to={`/category-images/${product.id}/${category.id}`}
+                                      onClick={() =>
+                                        handleNavigation(`/category-images/${product.id}/${category.id}`)
+                                      }
+                                      className="hover:text-green-700"
+                                    >
+                                      {category.categoryName}
+                                    </Link>
+                                  </li>
+                                ))}
+                            </ul>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                 </div>
                 </div>
-
-                {/* Default view for medium and larger screens */}
-                <div className="hidden md:block">
-                  <Link to={`/institutional-products/${product.id}`}>
-                    <span className="font-bold text-xl">
-                      {product.name}
-                    </span>
-                  </Link>
-                  {product.categories.length > 0 && (
-                    <ul className="list-disc text-sm text-gray-500">
-                      {product.categories
-                        .sort((a, b) => {
-                          const indexA = categoryOrder.indexOf(a.categoryName);
-                          const indexB = categoryOrder.indexOf(b.categoryName);
-                          return (indexA !== -1 ? indexA : categoryOrder.length) -
-                                 (indexB !== -1 ? indexB : categoryOrder.length);
-                        })
-                        .map((category) => (
-                          <div key={category.id}>
-                            <Link
-                              to={`/category-images/${product.id}/${category.id}`}
-                              onClick={() => handleNavigation(`/category-images/${product.id}/${category.id}`)}
-                            >
-                              {category.categoryName}
-                            </Link>
-                          </div>
-                        ))}
-                    </ul>
-                  )}
-                </div>
-
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p>No institutional products found.</p>
-        )}
-      </div>
-
-      {/* Office Products */}
-      <div className="product-section grid lg:grid-cols-3 md:grid-cols-2 grid-rows-1">
-        {office_products.length > 0 ? (
-          office_products.map((product) => (
-            <div key={product.id} className="mb-4">
-              <Link to={`/office-products/${product.id}`} onClick={() => handleNavigation(`/office-products/${product.id}`)}>
-                <span className="font-bold text-sm md:text-xl">
-                  {product.name}
-                </span>
-              </Link>
-            </div>
-          ))
-        ) : (
-          <p>No office products found.</p>
-        )}
-      </div>
-
-    </div>
-  </div>
-)}
+              
+                )}
               </div>
 
               <div className="lg:relative inline-block text-left">

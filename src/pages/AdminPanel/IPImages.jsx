@@ -196,7 +196,7 @@ const IPImages = () => {
         </div>
 
         <div className='mt-10 space-x-3 flex justify-center md:justify-start'>
-          <Link to={"/institutional-product"}><button className='px-5 py-1 border rounded-lg text-white bg-green-500'>Back</button></Link>
+          <Link to={"/products"}><button className='px-5 py-1 border rounded-lg text-white bg-green-500'>Back</button></Link>
           <Link to={"/admin"}><button className='px-5 py-1 border rounded-lg text-white bg-green-500'>Home</button></Link>
         </div>
       </div>

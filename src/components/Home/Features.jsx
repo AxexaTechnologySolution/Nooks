@@ -1,4 +1,4 @@
-import { FaChalkboardTeacher, FaBed, FaUtensils, FaLock, FaBook, FaChair, FaTable } from "react-icons/fa";
+import { FaChalkboardTeacher, FaBed, FaUtensils, FaLock, FaBook, FaChair, FaTable,FaDesktop } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Features = () => {
@@ -7,45 +7,52 @@ const Features = () => {
             icon: <FaChalkboardTeacher className="w-6 h-6" />,
             title: "Class Room",
             desc: "A wide range of single and double desks, writing pad chairs, and teachers' tables to enhance the learning environment.",
-            to: "/institutional-products/aUEqZwVPPzkOBhQwVt6X"
+            to: "/products/aUEqZwVPPzkOBhQwVt6X"
         },
         {
             icon: <FaBed className="w-6 h-6" />,
             title: "Hostel",
             desc: "Comfortable single and bunk beds, along with study tables, designed to create a pleasant hostel experience.",
-            to: "/institutional-products/BnychZ587yTyDDXML5Fv"
+            to: "/products/BnychZ587yTyDDXML5Fv"
         },
         {
             icon: <FaUtensils className="w-6 h-6" />,
             title: "Cafeteria & Dining",
             desc: "Modern and durable cafeteria and dining tables and chairs, ideal for communal dining spaces.",
-            to: "/institutional-products/dIq5eTPF7ENSnrraXXCh"
+            to: "/products/dIq5eTPF7ENSnrraXXCh"
         },
         {
             icon: <FaLock className="w-6 h-6" />,
             title: "Lockers & Storage",
             desc: "Sturdy Lockers, Cupboards, Cabinets, and Shelves that are practical and aesthetically appealing.",
-            to: "/institutional-products/upfn830m3iQK3SxfnOii"
+            to: "/products/upfn830m3iQK3SxfnOii"
         },
         {
             icon: <FaBook className="w-6 h-6" />,
             title: "Library",
             desc: "Functional and aesthetic library furniture, including display racks, magazine racks, tables, and chairs.",
-            to: "/institutional-products/xE5xuDaaC0dFxomOVFvd"
+            to: "/products/xE5xuDaaC0dFxomOVFvd"
         },
         {
             icon: <FaChair className="w-6 h-6" />,
-            title: "Chairs",
+            title: "Chair",
             desc: "Discover our stylish and ergonomic office furniture, perfect for creating a productive and comfortable workspace.",
             to: "/office-products/fSDFbabmT71Kc9v9xTU8"
         },
         {
             icon: <FaTable className="w-6 h-6" />,
-            title: "Tables",
+            title: "Table",
             desc: "Thoughtfully designed workstations that create an enabling work environment by providing the tools to increase productivity, comfort, and satisfaction.",
             to: "/office-products/gEqYLc3KiVKDOVQxKQrZ"
+        },
+        {
+            icon: <FaDesktop className="w-6 h-6" />,
+            title: "Workstation",
+            desc: "Ergonomic and space-efficient workstations designed to enhance productivity and comfort in office environments.",
+            to: "/office-products/hqWERvMnKJHyXo9pLZtY"
         }
     ];
+    
 
     return (
         <section className="py-14 bg-white">

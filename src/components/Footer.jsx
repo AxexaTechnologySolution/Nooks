@@ -16,7 +16,7 @@ const Footer = () => {
               <Link to={"/"} className="text-lg hover:text-[#3eae94] transition text-gray-800 duration-300">Home</Link>
             </li>
             <li>
-              <p className="text-lg hover:text-[#3eae94] transition text-gray-800 duration-300">Product</p>
+            <Link to={"/products"} className="text-lg hover:text-[#3eae94] transition text-gray-800 duration-300">Products</Link>
             </li>
             <li>
               <Link to={"/contact-us"} className="text-lg hover:text-[#3eae94] transition text-gray-800 duration-300">Contact Us</Link>

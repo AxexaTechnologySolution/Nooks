@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs,db } from "./firebase";
-import InstitutionalProducts from "./components/Product/Institutional/Main";
-import OfficeProducts from "./components/Product/Office/Main";
+import InstitutionalProducts from "./components/Product/Institutional/MainInstitutional";
+import OfficeProducts from "./components/Product/Office/MainOffice";
 
 
 function Fetch() {

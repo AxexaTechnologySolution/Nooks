@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound";
 import OfficeProductDetails from "./pages/OfficeProductDetails";
 import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
+import InstitutionalProducts from "./components/Product/Institutional/MainInstitutional";
 
 const App = () => {
   return (
@@ -28,10 +29,11 @@ const App = () => {
         {/* Home */}
         <Route path="/" element={<Home />} />
         <Route path="/fetch" element={<Fetch />} />
-        <Route path="/institutional-products/:name" element={<InstitutionalProductDetails />} />
+        <Route path="/products/:name" element={<InstitutionalProductDetails />} />
         <Route path="/office-products/:name" element={<OfficeProductDetails />} />
         <Route path="/category-images/:name/:id" element={<CategoryImages />} />
         <Route path="/products/details/:name" element={<ProductDetails />} />
+        <Route path="/products" element={<InstitutionalProducts />} />
 
         {/* Corrected Duplicate NotFound Route */}
         <Route path="*" element={<NotFound />} />
@@ -43,7 +45,6 @@ const App = () => {
         {/* Categories */}
         <Route path="/institutional-category" element={<InstitutionalCategory />} />
         <Route path="/office-category" element={<OfficeCategory />} />
-        <Route path="/institutional-product" element={<InstitutionalProduct />} />
         <Route path="/office-product" element={<OfficeProduct />} />
         <Route path="/ip-images" element={<IPImages />} />
         <Route path="/op-images" element={<OPImages />} />

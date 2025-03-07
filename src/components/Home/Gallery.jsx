@@ -13,7 +13,7 @@ const Gallery = () => {
 
             <div className=" flex items-center justify-center ">
                 <Link className="isomorphic-link isomorphic-link--internal inline-flex items-center justify-center gap-2 rounded-xl  bg-gray-500 hover:bg-gray-800 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-150 "
-                   to={"/institutional-products/aUEqZwVPPzkOBhQwVt6X"}>View More
+                   to={"/products/aUEqZwVPPzkOBhQwVt6X"}>View More
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd"
                             d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
@@ -24,7 +24,7 @@ const Gallery = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
-            <Link to={"/institutional-products/aUEqZwVPPzkOBhQwVt6X"}
+            <Link to={"/products/aUEqZwVPPzkOBhQwVt6X"}
                 className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
                 <img src="https://img.freepik.com/free-photo/international-day-education-dark-style_23-2151013384.jpg?t=st=1719468459~exp=1719472059~hmac=5d9c0d2f3e887683e4aeb867fcf0952099b1cc8df1eab4524a5f8f887b1c75be&w=740" loading="lazy" alt="Photo by Minh Pham" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
@@ -34,7 +34,7 @@ const Gallery = () => {
 
                 <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg underline">Classroom Furnitures</span>
             </Link>
-            <Link to={"/institutional-products/BnychZ587yTyDDXML5Fv"}
+            <Link to={"/products/BnychZ587yTyDDXML5Fv"}
                 className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
                 <img src="https://www.popcornfurniture.com/wp-content/uploads/2020/01/BED.jpg" loading="lazy" alt="Photo by Martin Sanchez" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
@@ -44,7 +44,7 @@ const Gallery = () => {
 
                 <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg underline">Hostel Furniture</span>
             </Link>
-            <Link to={"/institutional-products/dIq5eTPF7ENSnrraXXCh"}
+            <Link to={"/products/dIq5eTPF7ENSnrraXXCh"}
                 className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
                 <img src="https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg" alt="Photo by Magicle" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 

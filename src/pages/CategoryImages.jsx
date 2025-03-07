@@ -132,7 +132,7 @@ function CategoryImages() {
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-start items-center">
-        <Link to={"/"}>
+        <Link to={"/products"}>
           <button
             // onClick={handleBackClick}
             className="mr-4 py-2 px-4 lg:px-6 bg-gray-500 text-white rounded-lg hover:bg-gray-800 flex items-center"
