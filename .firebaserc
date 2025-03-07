@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "nooks1",
+    "nooks1": "nooks1"
+  },
+  "targets": {},
+  "etags": {}
+}
