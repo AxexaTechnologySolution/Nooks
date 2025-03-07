@@ -320,7 +320,7 @@ const NavBar = () => {
                   onClick={() => handleNavigation("/contact-us")}
                   className="menu-link block mt-4 lg:inline-block lg:mt-0 text-gray-600 hover:text-[#3eae94] duration-300 font-bold text-md md:text-lg lg:ml-14 xl:text-xl"
                 >
-                  Contact 
+                  Contact Us
                 </Link>
               </div>
             </div>
