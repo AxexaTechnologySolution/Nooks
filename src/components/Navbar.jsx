@@ -17,47 +17,45 @@ const NavBar = () => {
   const dropdownRef = useRef(null);
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {  
-    const fetchProducts = async () => {  
-      try {  
-        // Fetch Institutional Products  
-        const institutionalSnapshot = await getDocs(  
-          collection(db, "institutionalProducts")  
-        );  
-        const institutionalProducts = institutionalSnapshot.docs.map((doc) => ({  
-          id: doc.id,  
-          type: "Institutional",  
-          ...doc.data(),  
-        }));  
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        // Fetch Institutional Products
+        const institutionalSnapshot = await getDocs(
+          collection(db, "institutionalProducts")
+        );
+        const institutionalProducts = institutionalSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          type: "Institutional",
+          ...doc.data(),
+        }));
 
-        // Fetch Office Products  
-        const officeSnapshot = await getDocs(collection(db, "officeProducts"));  
-        const officeProducts = officeSnapshot.docs.map((doc) => ({  
-          id: doc.id,  
-          type: "Office",  
-          ...doc.data(),  
-        }));  
+        // Fetch Office Products
+        const officeSnapshot = await getDocs(collection(db, "officeProducts"));
+        const officeProducts = officeSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          type: "Office",
+          ...doc.data(),
+        }));
 
-        // Merge both collections  
-        const allProducts = [...institutionalProducts, ...officeProducts];  
-        setProducts(allProducts);  
+        // Merge both collections
+        const allProducts = [...institutionalProducts, ...officeProducts];
+        setProducts(allProducts);
 
-        // Log the type of each product (example)  
-        allProducts.forEach(product => {  
-          console.log(product.name, product.type);  
-        });  
+        // Log the type of each product (example)
+        allProducts.forEach((product) => {
+          console.log(product.name, product.type);
+        });
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      } finally {
+      }
+    };
 
-
-      } catch (err) {  
-        console.error("Error fetching products:", err);  
-      } finally {  
-      }  
-    };  
-
-    fetchProducts();  
-  }, []);  
+    fetchProducts();
+  }, []);
   console.log(products.type);
-  
+
   // Toggle the dropdown visibility
   const toggleDropdown = (productId) => {
     setOpenDropdown(openDropdown === productId ? null : productId);
@@ -208,9 +206,9 @@ const NavBar = () => {
           </button>
         </div>
         <div
-          className={`w-full ${
+          className={`absolute top-full left-0 w-full bg-white shadow-md transition-transform duration-300 ease-in-out z-50 ${
             is_menu_open ? "block" : "hidden"
-          } lg:flex lg:items-center lg:w-auto menu-links`}
+          } lg:relative lg:flex lg:items-center lg:w-auto menu-links`}
         >
           <div className="lg:border-none rounded-md lg:mx-0 mx-5">
             <div className="text-sm nav-links lg:flex-grow lg:flex-none lg:flex-row flex flex-col lg:gap-3 items-center lg:items-start">
@@ -245,57 +243,78 @@ const NavBar = () => {
                   </div>
                 </div>
                 {is_products_open && (
-            
-                <div className="absolute -right-30 lg:-right-20 md:-right-60 mt-10 bg-white text-black shadow-lg z-20 text-xs sm:text-sm md:text-lg w-[60vw] md:w-[70vw] p-8">
-                 <div className="ml-0 md:ml-10">
-                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 ">
-                    {[...institutional_products, ...office_products].map((product) => {
-                      const isOfficeProduct = office_products.some((p) => p.id === product.id);
-                      return (
-                        <div key={product.id} className="mb-4">
-                          <Link
-                            to={isOfficeProduct ? `/office-products/${product.id}` : `/products/${product.id}`}
-                            className="text-black font-bold hover:text-green-700"
-                            onClick={() =>
-                              handleNavigation(isOfficeProduct ? "/office-products" : "/products")
-                            }
-                          >
-                            {product.name}
-                          </Link>
-                          {/* Show categories only for institutional products */}
-                          {!isOfficeProduct && product.categories?.length > 0 && (
-                            <ul className=" text-sm text-gray-500 mt-2">
-                              {product.categories
-                                .sort((a, b) => {
-                                  const indexA = categoryOrder.indexOf(a.categoryName);
-                                  const indexB = categoryOrder.indexOf(b.categoryName);
-                                  return (
-                                    (indexA !== -1 ? indexA : categoryOrder.length) -
-                                    (indexB !== -1 ? indexB : categoryOrder.length)
-                                  );
-                                })
-                                .map((category) => (
-                                  <li key={category.id}>
-                                    <Link
-                                      to={`/category-images/${product.id}/${category.id}`}
-                                      onClick={() =>
-                                        handleNavigation(`/category-images/${product.id}/${category.id}`)
-                                      }
-                                      className="hover:text-green-700"
-                                    >
-                                      {category.categoryName}
-                                    </Link>
-                                  </li>
-                                ))}
-                            </ul>
-                          )}
-                        </div>
-                      );
-                    })}
+                  <div className="absolute -right-30 lg:-right-20 md:-right-60 mt-10 bg-white text-black shadow-lg z-20 text-xs sm:text-sm md:text-lg w-[60vw] md:w-[70vw] p-8 max-h-[70vh] overflow-y-auto scrollbar-hide">
+                    <div className="ml-0 md:ml-10">
+                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 ">
+                        {[...institutional_products, ...office_products].map(
+                          (product) => {
+                            const isOfficeProduct = office_products.some(
+                              (p) => p.id === product.id
+                            );
+                            return (
+                              <div key={product.id} className="mb-4">
+                                <Link
+                                  to={
+                                    isOfficeProduct
+                                      ? `/office-products/${product.id}`
+                                      : `/products/${product.id}`
+                                  }
+                                  className="text-black font-bold hover:text-green-700"
+                                  onClick={() =>
+                                    handleNavigation(
+                                      isOfficeProduct
+                                        ? "/office-products"
+                                        : "/products"
+                                    )
+                                  }
+                                >
+                                  {product.name}
+                                </Link>
+                                {/* Show categories only for institutional products */}
+                                {!isOfficeProduct &&
+                                  product.categories?.length > 0 && (
+                                    <ul className=" text-sm text-gray-500 mt-2">
+                                      {product.categories
+                                        .sort((a, b) => {
+                                          const indexA = categoryOrder.indexOf(
+                                            a.categoryName
+                                          );
+                                          const indexB = categoryOrder.indexOf(
+                                            b.categoryName
+                                          );
+                                          return (
+                                            (indexA !== -1
+                                              ? indexA
+                                              : categoryOrder.length) -
+                                            (indexB !== -1
+                                              ? indexB
+                                              : categoryOrder.length)
+                                          );
+                                        })
+                                        .map((category) => (
+                                          <li key={category.id}>
+                                            <Link
+                                              to={`/category-images/${product.id}/${category.id}`}
+                                              onClick={() =>
+                                                handleNavigation(
+                                                  `/category-images/${product.id}/${category.id}`
+                                                )
+                                              }
+                                              className="hover:text-green-700"
+                                            >
+                                              {category.categoryName}
+                                            </Link>
+                                          </li>
+                                        ))}
+                                    </ul>
+                                  )}
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                    </div>
                   </div>
-                 </div>
-                </div>
-              
                 )}
               </div>
 

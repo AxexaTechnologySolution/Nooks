@@ -44,7 +44,7 @@ const AdminMain = () => {
         <div className="container max-w-4xl bg-white p-8 rounded-lg shadow-lg mt-10">
           <InstitutionalCategory />
           <div className="mt-10">
-            <Link to={"/products"}>
+            <Link to={"/institutional-product"}>
               <button className="px-5 py-1 border rounded-lg bg-green-600 hover:bg-green-700 text-white">Next</button>
             </Link>
           </div>

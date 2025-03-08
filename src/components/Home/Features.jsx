@@ -35,19 +35,19 @@ const Features = () => {
         },
         {
             icon: <FaChair className="w-6 h-6" />,
-            title: "Chair",
+            title: "Chairs",
             desc: "Discover our stylish and ergonomic office furniture, perfect for creating a productive and comfortable workspace.",
             to: "/office-products/fSDFbabmT71Kc9v9xTU8"
         },
         {
             icon: <FaTable className="w-6 h-6" />,
-            title: "Table",
+            title: "Tables",
             desc: "Thoughtfully designed workstations that create an enabling work environment by providing the tools to increase productivity, comfort, and satisfaction.",
             to: "/office-products/gEqYLc3KiVKDOVQxKQrZ"
         },
         {
             icon: <FaDesktop className="w-6 h-6" />,
-            title: "Workstation",
+            title: "Workstations",
             desc: "Ergonomic and space-efficient workstations designed to enhance productivity and comfort in office environments.",
             to: "/office-products/hqWERvMnKJHyXo9pLZtY"
         }

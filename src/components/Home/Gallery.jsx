@@ -55,7 +55,7 @@ const Gallery = () => {
                 <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg underline">Cafeteria & Dining </span>
             </Link>
            
-            <Link to={"/office-products/fSDFbabmT71Kc9v9xTU8"}
+            <Link to={"/office-products/r3SmXqPXYx5GSNFZfy4j"}
                 className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
                 <img src="https://img.freepik.com/free-photo/office-chair-still-life_23-2151149124.jpg?t=st=1719469167~exp=1719472767~hmac=e707ee2abb5b748cfae42b418a08fd1d709872b68bc37a7249800b88bd3fbee7&w=900" loading="lazy" alt="Photo by Lorenzo Herrera" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
@@ -63,7 +63,7 @@ const Gallery = () => {
                     className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                 </div>
 
-                <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg underline">Office Furnitures</span>
+                <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg underline">Workstations</span>
             </Link>
         </div>
     </div>

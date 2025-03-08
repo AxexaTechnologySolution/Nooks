@@ -19,7 +19,7 @@ import NotFound from "./pages/NotFound";
 import OfficeProductDetails from "./pages/OfficeProductDetails";
 import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
-import InstitutionalProducts from "./components/Product/Institutional/MainInstitutional";
+import MainInstitutional from "./components/Product/Institutional/MainInstitutional";
 
 const App = () => {
   return (
@@ -33,7 +33,7 @@ const App = () => {
         <Route path="/office-products/:name" element={<OfficeProductDetails />} />
         <Route path="/category-images/:name/:id" element={<CategoryImages />} />
         <Route path="/products/details/:name" element={<ProductDetails />} />
-        <Route path="/products" element={<InstitutionalProducts />} />
+        <Route path="/products" element={<MainInstitutional />} />
 
         {/* Corrected Duplicate NotFound Route */}
         <Route path="*" element={<NotFound />} />
@@ -42,7 +42,9 @@ const App = () => {
         <Route path="/institutional/:productId" element={<ProductImagesPage />} />
         <Route path="/office/:productId" element={<ProductImagesPage />} />
 
+
         {/* Categories */}
+        <Route path="/institutional-product" element={<InstitutionalProduct />} />
         <Route path="/institutional-category" element={<InstitutionalCategory />} />
         <Route path="/office-category" element={<OfficeCategory />} />
         <Route path="/office-product" element={<OfficeProduct />} />
@@ -54,14 +56,8 @@ const App = () => {
 
         {/* Admin */}
         <Route path="/admin-login" element={<AdminLogin />} />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <AdminMain />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/admin" element={<ProtectedRoute element={<AdminMain />} />} />
+
       </Routes>
       <Footer/>
     </Router>
