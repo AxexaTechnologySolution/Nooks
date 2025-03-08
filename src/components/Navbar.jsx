@@ -206,17 +206,17 @@ const NavBar = () => {
           </button>
         </div>
         <div
-          className={`absolute top-full left-0 w-full bg-white shadow-md transition-transform duration-300 ease-in-out z-50 ${
+          className={`absolute top-full left-0 w-full bg-white transition-transform duration-300 ease-in-out z-50 ${
             is_menu_open ? "block" : "hidden"
           } lg:relative lg:flex lg:items-center lg:w-auto menu-links`}
         >
-          <div className="lg:border-none rounded-md lg:mx-0 mx-5">
+          <div className="lg:border-none rounded-md lg:mx-0 mx-5 flex justify-center items-center">
             <div className="text-sm nav-links lg:flex-grow lg:flex-none lg:flex-row flex flex-col lg:gap-3 items-center lg:items-start">
-              <div>
+              <div className="">
                 <Link
                   to={"/"}
                   onClick={() => handleNavigation("/")}
-                  className="menu-link block mt-4 lg:inline-block lg:mt-0 lg:ml-14 text-gray-600 hover:text-[#3eae94] duration-300 font-bold text-md md:text-lg xl:text-xl"
+                  className="menu-link block lg:inline-block lg:mt-0 lg:ml-14 text-gray-600 hover:text-[#3eae94] duration-300 font-bold text-md md:text-lg xl:text-xl"
                 >
                   Home
                 </Link>
@@ -322,7 +322,7 @@ const NavBar = () => {
                 <Link
                   to={"/contact-us"}
                   onClick={() => handleNavigation("/contact-us")}
-                  className="menu-link block mt-4 lg:inline-block lg:mt-0 text-gray-600 hover:text-[#3eae94] duration-300 font-bold text-md md:text-lg lg:ml-14 xl:text-xl"
+                  className="menu-link block mt-4 mb-2 md:mb-0 lg:inline-block lg:mt-0 text-gray-600 hover:text-[#3eae94] duration-300 font-bold text-md md:text-lg lg:ml-14 xl:text-xl"
                 >
                   Contact Us
                 </Link>
