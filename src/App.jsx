@@ -20,7 +20,8 @@ import OfficeProductDetails from "./pages/OfficeProductDetails";
 import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
 import MainInstitutional from "./components/Product/Institutional/MainInstitutional";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 const App = () => {
   return (
     <Router>
@@ -60,6 +61,17 @@ const App = () => {
 
       </Routes>
       <Footer/>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Router>
   );
 };

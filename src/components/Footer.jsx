@@ -9,7 +9,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between border-b border-gray-700 pb-6">
           <div className="w-28 md:w-36">
-            <img src={logo} alt="Logo" className="w-full" />
+          <Link to="/"> <img src={logo} alt="Logo" className="w-full" />  </Link>
+
           </div>
           <ul className="flex flex-wrap justify-center md:justify-end gap-6 mt-6 md:mt-0">
             <li>

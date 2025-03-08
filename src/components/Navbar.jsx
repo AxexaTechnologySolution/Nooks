@@ -44,7 +44,7 @@ const NavBar = () => {
 
         // Log the type of each product (example)
         allProducts.forEach((product) => {
-          console.log(product.name, product.type);
+       
         });
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -54,7 +54,6 @@ const NavBar = () => {
 
     fetchProducts();
   }, []);
-  console.log(products.type);
 
   // Toggle the dropdown visibility
   const toggleDropdown = (productId) => {
@@ -190,13 +189,15 @@ const NavBar = () => {
   return (
     <div className="sticky top-0 w-full z-50 navigation-bar">
       <nav className="flex items-center justify-between flex-wrap bg-white shadow-md py-4 px-10 md:px-20">
-        <div className="flex items-center flex-shrink-0 text-white mr-6 justify-center h-full text-center logo mt-2">
-          <img
-            className="md:w-32 w-24 h-auto"
-            src="/logo.jpg"
-            alt="Nooks Furniture Logo"
-          />
-        </div>
+      <div className="flex items-center flex-shrink-0 text-white mr-6 justify-center h-full text-center logo mt-2">
+  <Link to="/">
+    <img
+      className="md:w-32 w-24 h-auto cursor-pointer"
+      src="/logo.jpg"
+      alt="Nooks Furniture Logo"
+    />
+  </Link>
+</div>
         <div className="block lg:hidden">
           <button
             onClick={toggle_menu}
