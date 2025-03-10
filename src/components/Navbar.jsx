@@ -43,9 +43,7 @@ const NavBar = () => {
         setProducts(allProducts);
 
         // Log the type of each product (example)
-        allProducts.forEach((product) => {
-       
-        });
+        allProducts.forEach((product) => {});
       } catch (err) {
         console.error("Error fetching products:", err);
       } finally {
@@ -75,7 +73,7 @@ const NavBar = () => {
     set_loading(true);
     try {
       // Define the desired category order
-      const categoryOrder = ["Single Bed", "Bunk Bed"]; // Add more categories as needed
+      const categoryOrder = ["Single bed", "Bunk bed"]; // Add more categories as needed
 
       // Fetch institutional products
       const institutional_snapshot = await getDocs(
@@ -156,22 +154,21 @@ const NavBar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [is_products_open]);
-
   const handleNavigation = (page) => {
-    // Check if navigating to a different page
-    if (currentPage === page) {
-      set_loading(false); // Don't show loader if same page
-    } else {
+    if (currentPage !== page) {
       set_loading(true); // Show loader if different page
-      setCurrentPage(page); // Update current page
+      setCurrentPage(page);
     }
+    set_is_products_open(false); // Close the dropdown when navigating
+    set_is_menu_open(false)
   };
+
   const categoryOrder = [
     "Single seater desk", // Ensuring this appears first
     "Double seater desk",
     "Three seater desk",
     "Writing pad chair",
-    "Teacher's table and chair",
+    "Teacher's tables and chairs",
   ];
 
   if (error) {
@@ -189,15 +186,15 @@ const NavBar = () => {
   return (
     <div className="sticky top-0 w-full z-50 navigation-bar">
       <nav className="flex items-center justify-between flex-wrap bg-white shadow-md py-4 px-10 md:px-20">
-      <div className="flex items-center flex-shrink-0 text-white mr-6 justify-center h-full text-center logo mt-2">
-  <Link to="/">
-    <img
-      className="md:w-32 w-24 h-auto cursor-pointer"
-      src="/logo.jpg"
-      alt="Nooks Furniture Logo"
-    />
-  </Link>
-</div>
+        <div className="flex items-center flex-shrink-0 text-white mr-6 justify-center h-full text-center logo mt-2">
+          <Link to="/">
+            <img
+              className="md:w-32 w-24 h-auto cursor-pointer"
+              src="/logo.jpg"
+              alt="Nooks Furniture Logo"
+            />
+          </Link>
+        </div>
         <div className="block lg:hidden">
           <button
             onClick={toggle_menu}
@@ -271,6 +268,7 @@ const NavBar = () => {
                                 >
                                   {product.name}
                                 </Link>
+
                                 {/* Show categories only for institutional products */}
                                 {!isOfficeProduct &&
                                   product.categories?.length > 0 && (
