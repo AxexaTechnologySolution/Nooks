@@ -49,7 +49,7 @@ const Features = () => {
             icon: <FaDesktop className="w-6 h-6" />,
             title: "Workstations",
             desc: "Ergonomic and space-efficient workstations designed to enhance productivity and comfort in office environments.",
-            to: "/office-products/hqWERvMnKJHyXo9pLZtY"
+            to: "/office-products/r3SmXqPXYx5GSNFZfy4j"
         }
     ];
     
